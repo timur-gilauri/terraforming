@@ -26,14 +26,15 @@ locals {
 		table_name		= "${aws_dynamodb_table.teams-dynamodb-table.name}"
 		hash_key		= "${aws_dynamodb_table.teams-dynamodb-table.hash_key}"
 	}
-	players_path = "${path.module}/players.json"
+	players_path	= "${path.module}/players.json"
+	players 		= jsondecode(file(local.players_path))
 }
 
 resource "aws_dynamodb_table_item" "the-players" {
-	for_each = toset(jsondecode(file(local.players_path)))
+	count = length(local.players)
 
 	table_name = local.items_vars.table_name
 	hash_key = local.items_vars.hash_key
 
-	item = each.value	
+	item = jsonencode(local.players[count.index])
 }
