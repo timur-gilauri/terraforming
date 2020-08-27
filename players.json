@@ -1,0 +1,14 @@
+[
+	{
+		"TeamTitle": { "S": "Manchester City" },
+		"PlayerName": { "S": "Sergio Aguero" }
+	},
+	{
+		"TeamTitle": { "S": "Manchester United" },
+		"PlayerName": { "S": "Paul Pogba" }
+	},
+	{
+		"TeamTitle": { "S": "Chelsea" },
+		"PlayerName": { "S": "Frank Lampard" }
+	},
+]
