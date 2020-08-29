@@ -10,5 +10,9 @@
 	{
 		"TeamTitle": { "S": "Chelsea" },
 		"PlayerName": { "S": "Frank Lampard" }
+	},
+	{
+		"TeamTitle": { "S": "Manchester City" },
+		"PlayerName": { "S": "Leonel Messi" }
 	}
 ]
