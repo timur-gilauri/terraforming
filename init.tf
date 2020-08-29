@@ -48,7 +48,7 @@ module "deploy" {
 
     api_id               = module.api.data.api_id
     integration_name     = module.integration.name
-    invoke_url_save_path = "${path.module}/invoke-url"
+    invoke_url_save_path = "${path.module}/assets/tmp/invoke-url"
 
     depends_on = [
         module.integration ]
