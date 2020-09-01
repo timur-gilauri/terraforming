@@ -24,9 +24,8 @@ module "lambda" {
 module "integration" {
   source = "./modules/integration"
 
-  api_data          = module.api.data
-  lambda_invoke_arn = module.lambda.invoke_arn
-  lambda_name       = module.lambda.name
+  api_data    = module.api.data
+  lambda_data = module.lambda.data
 
   depends_on = [
     module.api,
@@ -36,10 +35,7 @@ module "integration" {
 module "deploy" {
   source = "./modules/deploy"
 
-  api_id               = module.api.data.api_id
-  integration_name     = module.integration.name
-  invoke_url_save_path = "${path.module}/assets/tmp/invoke-url"
-
+  api_id = module.api.data.api_id
   depends_on = [
   module.integration]
 }

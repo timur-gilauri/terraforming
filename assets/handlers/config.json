@@ -1,0 +1,12 @@
+[
+  {
+    "method": "GET",
+    "url": "list",
+    "path": "./list.js"
+  },
+  {
+    "method": "POST",
+    "url": "items",
+    "path": "./items.js"
+  }
+]

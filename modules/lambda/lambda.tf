@@ -1,7 +1,7 @@
 variable "bucket_data" {
   type = object({
     bucket_name = string,
-    handler_key = string
+    handlers    = map(string)
   })
 }
 
@@ -31,13 +31,14 @@ POLICY
 }
 
 resource "aws_lambda_function" "lambda" {
+  for_each = var.bucket_data.handlers
 
-  function_name = "ServerlessLambdaFunction"
+  function_name = "lambda-${each.key}"
 
   s3_bucket = var.bucket_data.bucket_name
-  s3_key    = var.bucket_data.handler_key
+  s3_key    = each.value
 
-  handler = "index.handler"
+  handler = "${each.key}.handler"
   runtime = "nodejs10.x"
 
   role = aws_iam_role.role.arn
@@ -50,9 +51,11 @@ resource "aws_iam_policy" "dynamodb" {
 }
 
 resource "aws_lambda_permission" "apigw_lambda" {
+  for_each = var.bucket_data.handlers
+
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.lambda.function_name
+  function_name = "lambda-${each.key}"
   principal     = "apigateway.amazonaws.com"
 
   source_arn = "${var.api_exec_arn}/*/*"
@@ -63,10 +66,6 @@ resource "aws_iam_role_policy_attachment" "dynamodb" {
   policy_arn = aws_iam_policy.dynamodb.arn
 }
 
-output "invoke_arn" {
-  value = aws_lambda_function.lambda.invoke_arn
-}
-
-output "name" {
-  value = "lambda"
+output "data" {
+  value = { for k, v in aws_lambda_function.lambda : k => v.invoke_arn }
 }
