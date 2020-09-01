@@ -66,6 +66,11 @@ resource "aws_iam_role_policy_attachment" "dynamodb" {
   policy_arn = aws_iam_policy.dynamodb.arn
 }
 
+resource "aws_iam_role_policy_attachment" "logs" {
+  role       = aws_iam_role.role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
 output "data" {
   value = { for k, v in aws_lambda_function.lambda : k => v.invoke_arn }
 }
