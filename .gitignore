@@ -1,3 +1,4 @@
-/.terraform
+.idea
+.terraform
 /assets/tmp/
 /bucket/.terraform
