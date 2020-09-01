@@ -1,0 +1,1 @@
+{"bucket_name":"my.bucket.to.test.terraform","handlers":{"items":"my.handler.to.test.lambda.b7ef37d65b93879dc351a65a1527c0b6","list":"my.handler.to.test.lambda.6f5fb051d0ccf86ab731b70e73a37be0"}}
