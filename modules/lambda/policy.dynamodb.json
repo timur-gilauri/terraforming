@@ -5,7 +5,8 @@
       "Sid": "ReadWriteTable",
       "Effect": "Allow",
       "Action": [
-        "dynamodb:Scan"
+        "dynamodb:Scan",
+        "dynamodb:BatchWriteItem"
       ],
       "Resource": "arn:aws:dynamodb:*:*:table/*"
     }
