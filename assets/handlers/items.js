@@ -22,6 +22,6 @@ exports.handler = async (event, context, callback) => {
 
     return callback(null, { statusCode: 200, body: 'Items successfully saved to DB' })
   } catch (e) {
-    return callback(e)
+    return callback(null, {statusCode: 200, body: e.message})
   }
 }
